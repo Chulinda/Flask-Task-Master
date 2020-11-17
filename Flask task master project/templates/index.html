@@ -1,0 +1,94 @@
+{%extends 'base.html'%}
+
+
+{%block head%}
+<title>Task Master</title>
+
+{%endblock%}
+
+
+
+
+
+{% block body%}
+
+<div class = 'content'>
+
+    <h1 style = 'text-align:center'>Task Master</h1>
+    <table class = "styled_table">
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+
+        </tr>
+        {% for task in tasks%}
+
+            <tr>
+                <td>{{task.content}}</td>
+                <td>{{task.date_created.date()}}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    <form action="/" method = "POST">
+    <input type="text" name = "content" id = "content">
+    <input type="submit" value="Add task ">
+
+
+    </form>
+</div>
+<style>
+    
+    body, html {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,54,121,0.5970763305322129) 35%, rgba(0,212,255,1) 100%);
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.content {
+    margin: 0 auto;
+    width: 400px;
+}
+
+table, td, th {
+    border: 1px solid #aaa;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+#content {
+    width: 70%;
+}
+</style>
+{%endblock%}
